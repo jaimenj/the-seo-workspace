@@ -11,11 +11,11 @@ const rename = require('gulp-rename');
 
 function css() {
     return gulp.src('./lib/tsw.scss')
-        .pipe(sourcemaps.init())
+        //.pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(cleanCss())
         .pipe(rename('tsw.min.css'))
-        .pipe(sourcemaps.write())
+        //.pipe(sourcemaps.write())
         .pipe(gulp.dest('./lib'))
 }
 
@@ -25,10 +25,10 @@ function watchCss() {
 
 function js() {
     return gulp.src('./lib/tsw.js')
-        .pipe(sourcemaps.init())
+        //.pipe(sourcemaps.init())
         .pipe(uglify())
         .pipe(concat('tsw.min.js'))
-        .pipe(sourcemaps.write())
+        //.pipe(sourcemaps.write())
         .pipe(gulp.dest('./lib'))
 }
 
