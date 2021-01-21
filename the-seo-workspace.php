@@ -13,7 +13,7 @@ define('TSW_PATH', plugin_dir_path(__FILE__));
 
 include_once TSW_PATH.'the-seo-workspace-database-manager.php';
 include_once TSW_PATH.'the-seo-workspace-backend-controller.php';
-//include_once TSW_PATH.'the-seo-workspace-ajax-controller.php';
+include_once TSW_PATH.'the-seo-workspace-ajax-controller.php';
 
 class TheSeoWorkspace
 {
@@ -38,7 +38,7 @@ class TheSeoWorkspace
 
         TheSeoWorkspaceDatabaseManager::get_instance();
         TheSeoWorkspaceBackendController::get_instance();
-        //TheSeoWorkspaceAjaxController::get_instance();
+        TheSeoWorkspaceAjaxController::get_instance();
     }
 
     public function activation()
