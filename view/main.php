@@ -35,44 +35,8 @@ data-tsw_ajax_url="<?= admin_url('admin-ajax.php') ?>">
         wp_nonce_field('tsw', 'tsw_nonce');
         ?>
 
-        <div class="table-responsive" id="tsw-datatable-container">
-            <table 
-            class="records_list table table-striped table-bordered table-hover" 
-            id="tsw-datatable" 
-            width="100%">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Home URL</th>
-                        <th>Max depth allowed</th>
-                        <th>Max urls allowed</th>
-                        <th>Max sec allowed</th>
-                        <th>Crawl type</th>
-                        <th>Web ping enabled</th>
-                        <th>Is online</th>
-                        <th>Emails to notify</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tfoot>
-                    <tr>
-                        <th>Filter..</th>
-                        <th>Filter..</th>
-                        <th>Filter..</th>
-                        <th>Filter..</th>
-                        <th>Filter..</th>
-                        <th>Filter..</th>
-                        <th>Filter..</th>
-                        <th>Filter..</th>
-                        <th>Filter..</th>
-                        <th></th>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
-
-        <div class="tsw-footer-actions-container">
-            <div class="tsw-footer-actions-container-left">
+        <div class="tsw-header-actions-container">
+            <div class="tsw-header-actions-container-left">
                 <input type="submit" name="tsw-submit" id="tsw-submit" class="button button-green tsw-btn-submit" value="Save this configs">
 
                 <label for="quantity_per_batch">Quantity per Batch</label>
@@ -99,10 +63,38 @@ data-tsw_ajax_url="<?= admin_url('admin-ajax.php') ?>">
                     <option value="120"<?= (120 == $time_between_batches ? ' selected' : ''); ?>>120s</option>
                 </select>
             </div>
-            <div class="tsw-footer-actions-container-right">
+            <div class="tsw-header-actions-container-right">
                 <input type="text" name="txt-add-home-url" placeholder="Add a new home URL..">
                 <button type="submit" name="tsw-submit-add-home-url" id="tsw-submit-add-home-url" class="button button-green button-add-home-url">Add home URL</button>
             </div>
+        </div>
+
+        <div class="table-responsive" id="tsw-datatable-container">
+            <table 
+            class="records_list table table-striped table-bordered table-hover" 
+            id="tsw-datatable" 
+            width="100%">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Home URL</th>
+                        <th>Main info</th>
+                        <th>Is online</th>
+                        <th>Emails to notify</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th class="filterme">Filter..</th>
+                        <th class="filterme">Filter..</th>
+                        <th></th>
+                        <th class="filterme">Filter..</th>
+                        <th class="filterme">Filter..</th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+            </table>
         </div>
         
     </div>
