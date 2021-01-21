@@ -22,15 +22,14 @@ class TheSeoWorkspaceBackendController
 
     public function add_admin_page()
     {
-        $page_title = 'SEO Workspace';
+        $page_title = 'The SEO Workspace';
         $menu_title = $page_title;
         $capability = 'administrator';
         $menu_slug = 'the-seo-workspace';
         $function = [$this, 'tsw_main_admin_controller'];
-        $icon_url = 'dashicons-performance';
         $position = null;
 
-        add_menu_page($page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position);
+        add_management_page($page_title, $menu_title, $capability, $menu_slug, $function, $position);
     }
 
     public function tsw_main_admin_controller()
