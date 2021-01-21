@@ -1,1 +1,12 @@
 .tsw-icon{width:30px;height:30px;font-size:30px}
+.tsw-header-actions-container{display:flex;margin-bottom:10px}
+.tsw-header-actions-container div{width:100%;margin-top:20px}
+.tsw-header-actions-container-left{text-align:left}
+.tsw-header-actions-container-right{text-align:right}
+#tsw-datatable-container{padding:5px;margin:0;box-shadow:2px 2px 3px;border-radius:3px}
+#tsw-datatable-container #tsw-datatable tfoot{display:table-header-group!important}
+#tsw-datatable-container #tsw-datatable tfoot input{width:100%!important}
+#tsw-datatable-container .dataTables_wrapper .dataTables_length,#tsw-datatable-container .dataTables_wrapper .dt-buttons{padding-top:.25em}
+#tsw-datatable-container .dataTables_wrapper .dataTables_length select,#tsw-datatable-container .dataTables_wrapper .dt-buttons select{height:32px;width:80px;margin:0 5px;line-height:18px}
+#tsw-datatable-container .dataTables_wrapper .dt-buttons{padding-left:10px}
+#tsw-datatable-container .dataTables_wrapper .dataTables_filter input{height:32px}
