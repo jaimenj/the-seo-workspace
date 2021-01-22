@@ -69,4 +69,39 @@ class TheSeoWorkspaceDatabaseManager
 
         update_option('tsw_db_version', $this->current_version);
     }
+
+    /**
+     * Receive data in format:
+     *   'column' => 'value'
+     *   ...
+     */
+    public function add_url($data)
+    {
+        global $wpdb;
+
+        $sql = 'INSERT INTO '.$wpdb->prefix.'the_seo_workspace (';
+        $keys = $values = [];
+        foreach($data as $key => $value) {
+            $keys[] = $key;
+        }
+        $sql .= implode(', ' ,$keys).' VALUES (';
+        foreach($data as $key => $value) {
+            if (is_bool($value) or is_numeric($value)) {
+                $values[] = $value;
+            }else {
+                $values[] = "'".$value."'";
+            }
+        }
+        $sql .= implode(', ' ,$values).');';
+
+        $wpdb->get_results($sql);
+    }
+
+    public function edit_url($id, $data){
+
+    }
+
+    public function remove_url($id){
+        
+    }
 }
