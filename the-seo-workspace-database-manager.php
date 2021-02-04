@@ -31,7 +31,7 @@ class TheSeoWorkspaceDatabaseManager
             .'home_url VARCHAR(512) NOT NULL,'
             .'max_depth_allowed INTEGER NOT NULL,'
             .'max_urls_allowed INTEGER NOT NULL,'
-            .'max_sec_allowed INTEGER NOT NULL,'
+            .'max_secs_allowed INTEGER NOT NULL,'
             .'crawl_type VARCHAR(16) NOT NULL,'
             .'web_ping_enabled BOOLEAN NOT NULL,'
             .'is_online BOOLEAN NOT NULL,'

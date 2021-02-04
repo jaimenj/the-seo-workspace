@@ -108,7 +108,7 @@ class TheSeoWorkspaceAjaxController
                 $value->home_url,
                 'Max depth allowed: '.$value->max_depth_allowed.'<br>'
                 .'Max urls allowed: '.$value->max_urls_allowed.'<br>'
-                .'Max secs allowed: '.$value->max_sec_allowed.'<br>'
+                .'Max secs allowed: '.$value->max_secs_allowed.'<br>'
                 .'Crawl type: '.$value->crawl_type.'<br>'
                 .'Web ping enabled: '.$value->web_ping_enabled,
                 $value->is_online,
