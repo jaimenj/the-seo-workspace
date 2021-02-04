@@ -32,7 +32,7 @@ class TheSeoWorkspaceAjaxController
         // Main query..
         $sql = 'SELECT * ';
         $sql_filtered = 'SELECT count(*) ';
-        $from_sentence .= ' FROM '.$wpdb->prefix.'the_seo_workspace ';
+        $from_sentence = ' FROM '.$wpdb->prefix.'the_seo_workspace ';
         $sql .= $from_sentence;
         $sql_filtered .= $from_sentence;
 
