@@ -53,6 +53,8 @@ class TheSeoWorkspaceBackendController
                  */
                 if (isset($_REQUEST['tsw-submit'])) {
                     $tswSms = $this->_save_main_configs();
+                } elseif(isset($_REQUEST['tsw-submit-add-home-url'])) {
+                    $tswSms = $this->_add_home_url();
                 } else {
                     $tswSms = '<div id="message" class="notice notice-success is-dismissible"><p>Cannot understand submitting!</p></div>';
                 }
@@ -74,5 +76,13 @@ class TheSeoWorkspaceBackendController
         update_option('tsw_time_between_batches', intval($_REQUEST['time_between_batches']));
 
         return '<div id="message" class="notice notice-success is-dismissible"><p>Main options saved!</p></div>';
+    }
+    private function _add_home_url() {
+        $new_home_url = sanitize_text_field($_REQUEST['txt-add-home-url']);
+        TheSeoWorkspaceDatabaseManager::get_instance()->add_url([
+            'home_url' => $new_home_url
+        ]);
+
+        return  '<div id="message" class="notice notice-success is-dismissible"><p>New home URL saved!</p></div>';
     }
 }

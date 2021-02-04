@@ -84,7 +84,7 @@ class TheSeoWorkspaceDatabaseManager
         foreach($data as $key => $value) {
             $keys[] = $key;
         }
-        $sql .= implode(', ' ,$keys).' VALUES (';
+        $sql .= implode(', ' ,$keys).') VALUES (';
         foreach($data as $key => $value) {
             if (is_bool($value) or is_numeric($value)) {
                 $values[] = $value;
