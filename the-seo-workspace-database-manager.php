@@ -81,27 +81,54 @@ class TheSeoWorkspaceDatabaseManager
 
         $sql = 'INSERT INTO '.$wpdb->prefix.'the_seo_workspace (';
         $keys = $values = [];
-        foreach($data as $key => $value) {
+        foreach ($data as $key => $value) {
             $keys[] = $key;
         }
-        $sql .= implode(', ' ,$keys).') VALUES (';
-        foreach($data as $key => $value) {
+        $sql .= implode(', ', $keys).') VALUES (';
+        foreach ($data as $key => $value) {
             if (is_bool($value) or is_numeric($value)) {
                 $values[] = $value;
-            }else {
+            } else {
                 $values[] = "'".$value."'";
             }
         }
-        $sql .= implode(', ' ,$values).');';
+        $sql .= implode(', ', $values).');';
 
         $wpdb->get_results($sql);
     }
 
-    public function edit_url($id, $data){
+    public function get_url($id)
+    {
+        global $wpdb;
 
+        $sql = 'SELECT * FROM '.$wpdb->prefix.'the_seo_workspace WHERE id = '.$id;
+
+        return (array) $wpdb->get_results($sql)[0];
     }
 
-    public function remove_url($id){
+    public function update_url($id, $data)
+    {
+        global $wpdb;
+
+        var_dump($data);
         
+        $sql = 'UPDATE '.$wpdb->prefix.'the_seo_workspace SET ';
+        $key_values = [];
+        foreach ($data as $key => $value) {
+            if (is_bool($value) or is_numeric($value)) {
+                $key_values[] = $key.' = '.$value;
+            } else {
+                $key_values[] = $key." = '".$value."'";
+            }
+        }
+        $sql .= implode(',', $key_values).' WHERE id = '.$id.';';
+
+        var_dump($sql);
+
+        $wpdb->get_results($sql);
+    }
+
+    public function remove_url($id)
+    {
     }
 }

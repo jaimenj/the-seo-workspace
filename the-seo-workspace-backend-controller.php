@@ -53,8 +53,10 @@ class TheSeoWorkspaceBackendController
                  */
                 if (isset($_REQUEST['tsw-submit'])) {
                     $tswSms = $this->_save_main_configs();
-                } elseif(isset($_REQUEST['tsw-submit-add-home-url'])) {
+                } elseif (isset($_REQUEST['tsw-submit-add-home-url'])) {
                     $tswSms = $this->_add_home_url();
+                } elseif (isset($_REQUEST['tsw-submit-save-edition-zone'])) {
+                    $tswSms = $this->_save_edition_zone();
                 } else {
                     $tswSms = '<div id="message" class="notice notice-success is-dismissible"><p>Cannot understand submitting!</p></div>';
                 }
@@ -70,6 +72,23 @@ class TheSeoWorkspaceBackendController
         include TSW_PATH.'view/main.php';
     }
 
+    private function _save_edition_zone()
+    {
+        var_dump($_POST);
+        TheSeoWorkspaceDatabaseManager::get_instance()->update_url($_GET['id'], [
+            'home_url' => $_POST['tsw-edition-zone-home_url'],
+            'max_depth_allowed' => $_POST['tsw-edition-zone-max_depth_allowed'],
+            'max_urls_allowed' => $_POST['tsw-edition-zone-max_urls_allowed'],
+            'max_secs_allowed' => $_POST['tsw-edition-zone-max_secs_allowed'],
+            'crawl_type' => $_POST['tsw-edition-zone-crawl_type'],
+            'web_ping_enabled' => $_POST['tsw-edition-zone-web_ping_enabled'],
+            'is_online' => $_POST['tsw-edition-zone-is_online'],
+            'emails_to_notify' => $_POST['tsw-edition-zone-emails_to_notify']
+        ]);
+
+        return '<div id="message" class="notice notice-success is-dismissible"><p>Site data saved!</p></div>';
+    }
+
     private function _save_main_configs()
     {
         update_option('tsw_quantity_per_batch', intval($_REQUEST['quantity_per_batch']));
@@ -77,10 +96,12 @@ class TheSeoWorkspaceBackendController
 
         return '<div id="message" class="notice notice-success is-dismissible"><p>Main options saved!</p></div>';
     }
-    private function _add_home_url() {
+
+    private function _add_home_url()
+    {
         $new_home_url = sanitize_text_field($_REQUEST['txt-add-home-url']);
         TheSeoWorkspaceDatabaseManager::get_instance()->add_url([
-            'home_url' => $new_home_url
+            'home_url' => $new_home_url,
         ]);
 
         return  '<div id="message" class="notice notice-success is-dismissible"><p>New home URL saved!</p></div>';

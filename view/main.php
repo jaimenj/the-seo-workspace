@@ -17,6 +17,7 @@ echo $_SERVER['REQUEST_URI'];
 id="tsw_form"
 name="tsw_form"
 data-tsw_ajax_url="<?= admin_url('admin-ajax.php') ?>">
+    
 
     <div class="wrap tsw-wrap">
         <span style="float: right">
@@ -34,6 +35,7 @@ data-tsw_ajax_url="<?= admin_url('admin-ajax.php') ?>">
         do_settings_sections('tsw_options_group');
         wp_nonce_field('tsw', 'tsw_nonce');
         ?>
+        <input type="hidden" id="tsw_path" value="<?= strtok($_SERVER["REQUEST_URI"], '?'); ?>">
 
         <div class="tsw-header-actions-container">
             <div class="tsw-header-actions-container-left">
