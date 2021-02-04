@@ -3,10 +3,18 @@
 .tsw-header-actions-container div{width:100%;margin-top:20px}
 .tsw-header-actions-container-left{text-align:left}
 .tsw-header-actions-container-right{text-align:right}
-#tsw-datatable-container{padding:5px;margin:0;box-shadow:2px 2px 3px;border-radius:3px}
+#tsw-datatable-container{padding:5px;margin:0;box-shadow:0 0 4px;border-radius:3px}
 #tsw-datatable-container #tsw-datatable tfoot{display:table-header-group!important}
 #tsw-datatable-container #tsw-datatable tfoot input{width:100%!important}
 #tsw-datatable-container .dataTables_wrapper .dataTables_length,#tsw-datatable-container .dataTables_wrapper .dt-buttons{padding-top:.25em}
 #tsw-datatable-container .dataTables_wrapper .dataTables_length select,#tsw-datatable-container .dataTables_wrapper .dt-buttons select{height:32px;width:80px;margin:0 5px;line-height:18px}
 #tsw-datatable-container .dataTables_wrapper .dt-buttons{padding-left:10px}
 #tsw-datatable-container .dataTables_wrapper .dataTables_filter input{height:32px}
+.tsw-edition-zone{padding:5px;margin:5px 0;box-shadow:0 0 4px;border-radius:3px}
+.tsw-edition-zone th{font-weight:400;padding:2px;text-align:right}
+.tsw-edition-zone td{padding:2px}
+.tsw-edition-zone td input{width:100%}
+.tsw-actions-zone{padding:5px;margin:5px 0;box-shadow:0 0 4px;border-radius:3px}
+.tsw-wrap h1,.tsw-wrap h2,.tsw-wrap h3,.tsw-wrap h4,.tsw-wrap h5,.tsw-wrap h6{font-weight:400}
+.tsw-wrap h2{font-size:20px}
+.tsw-wrap h3{font-size:18px}

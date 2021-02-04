@@ -25,7 +25,7 @@
 #tsw-datatable-container {
     padding: 5px;
     margin: 0px;
-    box-shadow: 2px 2px 3px;
+    box-shadow: 0px 0px 4px;
     border-radius: 3px;
 
     #tsw-datatable {
@@ -61,5 +61,53 @@
                 height: 32px;
             }
         }
+    }
+}
+
+.tsw-edition-zone {
+    padding: 5px;
+    margin: 5px 0;
+    box-shadow: 0px 0px 4px;
+    border-radius: 3px;
+
+    th {
+        font-weight: 400;
+        padding: 2px;
+        text-align: right;
+    }
+
+    td {
+        padding: 2px;
+
+        input {
+            width: 100%;
+        }
+    }
+}
+
+.tsw-actions-zone {
+    padding: 5px;
+    margin: 5px 0;
+    box-shadow: 0px 0px 4px;
+    border-radius: 3px;
+}
+
+.tsw-wrap {
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: 400;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 18px;
     }
 }

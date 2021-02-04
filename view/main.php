@@ -18,7 +18,7 @@ id="tsw_form"
 name="tsw_form"
 data-tsw_ajax_url="<?= admin_url('admin-ajax.php') ?>">
 
-    <div class="wrap">
+    <div class="wrap tsw-wrap">
         <span style="float: right">
             Support the project, please donate <a href="https://paypal.me/jaimeninoles" target="_blank"><b>here</b></a>.<br>
             Need help? Ask <a href="https://jnjsite.com/the-seo-workspace-for-wordpress/" target="_blank"><b>here</b></a>.
@@ -69,7 +69,15 @@ data-tsw_ajax_url="<?= admin_url('admin-ajax.php') ?>">
             </div>
         </div>
 
+        <?php
+
+        include TSW_PATH.'view/actions-with-a-selected-item.php';
+        include TSW_PATH.'view/edition-of-a-selected-item.php';
+
+        ?>
+
         <div class="table-responsive" id="tsw-datatable-container">
+            <h2>All the sites under the SEO study</h2>
             <table 
             class="records_list table table-striped table-bordered table-hover" 
             id="tsw-datatable" 
