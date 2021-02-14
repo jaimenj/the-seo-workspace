@@ -74,15 +74,15 @@ class TheSeoWorkspaceBackendController
 
     private function _save_edition_zone()
     {
-        TheSeoWorkspaceDatabaseManager::get_instance()->update_url($_GET['id'], [
-            'home_url' => $_POST['home_url'],
+        TheSeoWorkspaceDatabaseManager::get_instance()->update_url(intval($_GET['edit-id']), [
+            'home_url' => sanitize_text_field($_POST['home_url']),
             'max_depth_allowed' => $_POST['max_depth_allowed'],
             'max_urls_allowed' => $_POST['max_urls_allowed'],
             'max_secs_allowed' => $_POST['max_secs_allowed'],
-            'crawl_type' => $_POST['crawl_type'],
-            'web_ping_enabled' => $_POST['web_ping_enabled'],
-            'is_online' => $_POST['is_online'],
-            'emails_to_notify' => $_POST['emails_to_notify']
+            'crawl_type' => sanitize_text_field($_POST['crawl_type']),
+            'web_ping_enabled' => (boolval($_POST['web_ping_enabled']) ? 1 : 0),
+            'is_online' => (boolval($_POST['is_online']) ? 1 : 0),
+            'emails_to_notify' => sanitize_text_field($_POST['emails_to_notify']),
         ]);
 
         return '<div id="message" class="notice notice-success is-dismissible"><p>Site data saved!</p></div>';

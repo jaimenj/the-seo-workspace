@@ -17,7 +17,6 @@ echo $_SERVER['REQUEST_URI'];
 id="tsw_form"
 name="tsw_form"
 data-tsw_ajax_url="<?= admin_url('admin-ajax.php') ?>">
-    
 
     <div class="wrap tsw-wrap">
         <span style="float: right">
@@ -25,7 +24,7 @@ data-tsw_ajax_url="<?= admin_url('admin-ajax.php') ?>">
             Need help? Ask <a href="https://jnjsite.com/the-seo-workspace-for-wordpress/" target="_blank"><b>here</b></a>.
         </span>
 
-        <h1><span class="dashicons dashicons-performance tsw-icon"></span> The SEO Workspace</h1>
+        <h1><a href="?page=the-seo-workspace"><span class="dashicons dashicons-performance tsw-icon"></span> The SEO Workspace</a></h1>
 
         <?php
         if (isset($tswSms)) {

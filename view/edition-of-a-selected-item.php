@@ -87,7 +87,7 @@ if(isset($_GET['edit-id']) and !empty($_GET['edit-id']) and is_numeric($_GET['ed
                 <td>
                     <select name="crawl_type" id="crawl_type">
                         <option value="normal"<?= ($current_editing_url['crawl_type'] == 'normal' ? ' selected' : '') ?>>Normal</option>
-                        <option value="random"<?= (!$current_editing_url['crawl_type'] == 'random' ? ' selected' : '') ?>>Random</option>
+                        <option value="random"<?= ($current_editing_url['crawl_type'] == 'random' ? ' selected' : '') ?>>Random</option>
                     </select>
                 </td>
             </tr>
@@ -97,8 +97,8 @@ if(isset($_GET['edit-id']) and !empty($_GET['edit-id']) and is_numeric($_GET['ed
                 </th>
                 <td>
                     <select name="web_ping_enabled" id="web_ping_enabled">
-                        <option value="true"<?= ($current_editing_url['web_ping_enabled'] ? ' selected' : '') ?>>Yes</option>
-                        <option value="false"<?= (!$current_editing_url['web_ping_enabled'] ? ' selected' : '') ?>>No</option>
+                        <option value="1"<?= ($current_editing_url['web_ping_enabled'] ? ' selected' : '') ?>>Yes</option>
+                        <option value="0"<?= (!$current_editing_url['web_ping_enabled'] ? ' selected' : '') ?>>No</option>
                     </select>
                 </td>
             </tr>
@@ -108,8 +108,8 @@ if(isset($_GET['edit-id']) and !empty($_GET['edit-id']) and is_numeric($_GET['ed
                 </th>
                 <td>
                     <select name="is_online" id="is_online">
-                        <option value="true"<?= ($current_editing_url['is_online'] ? ' selected' : ''); ?>>Yes</option>
-                        <option value="false"<?= (!$current_editing_url['is_online'] ? ' selected' : ''); ?>>No</option>
+                        <option value="1"<?= ($current_editing_url['is_online'] ? ' selected' : ''); ?>>Yes</option>
+                        <option value="0"<?= (!$current_editing_url['is_online'] ? ' selected' : ''); ?>>No</option>
                     </select>
                 </td>
             </tr>
@@ -129,4 +129,7 @@ if(isset($_GET['edit-id']) and !empty($_GET['edit-id']) and is_numeric($_GET['ed
         </tbody>
     </table>
     <button type="submit" name="tsw-submit-save-edition-zone" id="tsw-submit-save-edition-zone" class="button button-green button-save-edition-zone">Save the current site changes</button>
+    <a href="?page=the-seo-workspace&select-id=<?= $current_editing_url['id'] ?>" class="button button-green tsw-btn-select-item">Select</a>
+    <a href="?page=the-seo-workspace" class="button button-green tsw-btn-close-item">Close</a>
+    <a href="?page=the-seo-workspace&remove-id=<?= $current_editing_url['id'] ?>" class="button button-red tsw-btn-remove-item">Remove</a>
 </div>

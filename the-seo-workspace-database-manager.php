@@ -110,8 +110,6 @@ class TheSeoWorkspaceDatabaseManager
     {
         global $wpdb;
 
-        var_dump($data);
-        
         $sql = 'UPDATE '.$wpdb->prefix.'the_seo_workspace SET ';
         $key_values = [];
         foreach ($data as $key => $value) {
@@ -122,8 +120,6 @@ class TheSeoWorkspaceDatabaseManager
             }
         }
         $sql .= implode(',', $key_values).' WHERE id = '.$id.';';
-
-        var_dump($sql);
 
         $wpdb->get_results($sql);
     }
