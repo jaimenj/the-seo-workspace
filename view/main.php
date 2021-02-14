@@ -73,8 +73,12 @@ data-tsw_ajax_url="<?= admin_url('admin-ajax.php') ?>">
 
         <?php
 
-        include TSW_PATH.'view/actions-with-a-selected-item.php';
-        include TSW_PATH.'view/edition-of-a-selected-item.php';
+        if (isset($_GET['select-id'])) {
+            include TSW_PATH.'view/actions-with-a-selected-item.php';
+        }
+        if (isset($_GET['edit-id'])) {
+            include TSW_PATH.'view/edition-of-a-selected-item.php';
+        }
 
         ?>
 

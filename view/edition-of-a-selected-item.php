@@ -5,24 +5,24 @@ if (!current_user_can('administrator')) {
     wp_die(__('Sorry, you are not allowed to manage options for this site.'));
 }
 
-if(isset($_GET['id']) and !empty($_GET['id']) and is_numeric($_GET['id'])) {
-    $current_editing_url = TheSeoWorkspaceDatabaseManager::get_instance()->get_url($_GET['id']);
+if(isset($_GET['edit-id']) and !empty($_GET['edit-id']) and is_numeric($_GET['edit-id'])) {
+    $current_editing_url = TheSeoWorkspaceDatabaseManager::get_instance()->get_url(intval($_GET['edit-id']));
 }
 
 ?>
 <div class="tsw-edition-zone">
-    <h3>Editing <span class="tsw-edition-zone-site-home-url"></span></h3>
+    <h3>Editing <span class="site-home-url"></span></h3>
     <table class="form-table" role="presentation">
         <tbody>
             <tr>
                 <th scope="row">
-                    <label for="tsw-edition-zone-id">Id</label>
+                    <label for="id">Id</label>
                 </th>
                 <td>
                     <input 
-                    name="tsw-edition-zone-id" 
+                    name="id" 
                     type="text" 
-                    id="tsw-edition-zone-id" 
+                    id="id" 
                     value="<?= $current_editing_url['id'] ?>"
                     class="regular-text"
                     disabled>
@@ -30,104 +30,98 @@ if(isset($_GET['id']) and !empty($_GET['id']) and is_numeric($_GET['id'])) {
             </tr>
             <tr>
                 <th scope="row">
-                    <label for="tsw-edition-zone-home_url">Home URL</label>
+                    <label for="home_url">Home URL</label>
                 </th>
                 <td>
                     <input 
-                    name="tsw-edition-zone-home_url" 
+                    name="home_url" 
                     type="text" 
-                    id="tsw-edition-zone-home_url"
+                    id="home_url"
                     value="<?= $current_editing_url['home_url'] ?>"
                     class="regular-text">
                 </td>
             </tr>
             <tr>
                 <th scope="row">
-                    <label for="tsw-edition-zone-max_depth_allowed">Max depth allowed</label>
+                    <label for="max_depth_allowed">Max depth allowed</label>
                 </th>
                 <td>
                     <input 
-                    name="tsw-edition-zone-max_depth_allowed" 
+                    name="max_depth_allowed" 
                     type="text" 
-                    id="tsw-edition-zone-max_depth_allowed" 
+                    id="max_depth_allowed" 
                     value="<?= $current_editing_url['max_depth_allowed'] ?>"
                     class="regular-text">
                 </td>
             </tr>
             <tr>
                 <th scope="row">
-                    <label for="tsw-edition-zone-max_urls_allowed">Max URLs allowed</label>
+                    <label for="max_urls_allowed">Max URLs allowed</label>
                 </th>
                 <td>
                     <input 
-                    name="tsw-edition-zone-max_urls_allowed" 
+                    name="max_urls_allowed" 
                     type="text" 
-                    id="tsw-edition-zone-max_urls_allowed" 
+                    id="max_urls_allowed" 
                     value="<?= $current_editing_url['max_urls_allowed'] ?>"
                     class="regular-text">
                 </td>
             </tr>
             <tr>
                 <th scope="row">
-                    <label for="tsw-edition-zone-max_secs_allowed">Max secs allowed</label>
+                    <label for="max_secs_allowed">Max secs allowed</label>
                 </th>
                 <td>
                     <input 
-                    name="tsw-edition-zone-max_secs_allowed" 
+                    name="max_secs_allowed" 
                     type="text" 
-                    id="tsw-edition-zone-max_secs_allowed" 
+                    id="max_secs_allowed" 
                     value="<?= $current_editing_url['max_secs_allowed'] ?>"
                     class="regular-text">
                 </td>
             </tr>
             <tr>
                 <th scope="row">
-                    <label for="tsw-edition-zone_crawl_type">Crawl type</label>
+                    <label for="crawl_type">Crawl type</label>
                 </th>
                 <td>
-                    <input 
-                    name="tsw-edition-zone_crawl_type" 
-                    type="text" 
-                    id="tsw-edition-zone_crawl_type" 
-                    value="<?= $current_editing_url['crawl_type'] ?>"
-                    class="regular-text">
+                    <select name="crawl_type" id="crawl_type">
+                        <option value="normal"<?= ($current_editing_url['crawl_type'] == 'normal' ? ' selected' : '') ?>>Normal</option>
+                        <option value="random"<?= (!$current_editing_url['crawl_type'] == 'random' ? ' selected' : '') ?>>Random</option>
+                    </select>
                 </td>
             </tr>
             <tr>
                 <th scope="row">
-                    <label for="tsw-edition-zone-web_ping_enabled">Web ping enabled</label>
+                    <label for="web_ping_enabled">Web ping enabled</label>
                 </th>
                 <td>
-                    <input 
-                    name="tsw-edition-zone-web_ping_enabled" 
-                    type="text" 
-                    id="tsw-edition-zone-web_ping_enabled" 
-                    value="<?= $current_editing_url['web_ping_enabled'] ?>"
-                    class="regular-text">
+                    <select name="web_ping_enabled" id="web_ping_enabled">
+                        <option value="true"<?= ($current_editing_url['web_ping_enabled'] ? ' selected' : '') ?>>Yes</option>
+                        <option value="false"<?= (!$current_editing_url['web_ping_enabled'] ? ' selected' : '') ?>>No</option>
+                    </select>
                 </td>
             </tr>
             <tr>
                 <th scope="row">
-                    <label for="tsw-edition-zone_is_online">Is online</label>
+                    <label for="is_online">Is online</label>
                 </th>
                 <td>
-                    <input 
-                    name="tsw-edition-zone_is_online" 
-                    type="text" 
-                    id="tsw-edition-zone_is_online" 
-                    value="<?= $current_editing_url['is_online'] ?>"
-                    class="regular-text">
+                    <select name="is_online" id="is_online">
+                        <option value="true"<?= ($current_editing_url['is_online'] ? ' selected' : ''); ?>>Yes</option>
+                        <option value="false"<?= (!$current_editing_url['is_online'] ? ' selected' : ''); ?>>No</option>
+                    </select>
                 </td>
             </tr>
             <tr>
                 <th scope="row">
-                    <label for="tsw-edition-zone-emails_to_notify">Emails to notify</label>
+                    <label for="emails_to_notify">Emails to notify</label>
                 </th>
                 <td>
                     <input 
-                    name="tsw-edition-zone-emails_to_notify" 
+                    name="emails_to_notify" 
                     type="text" 
-                    id="tsw-edition-zone-emails_to_notify" 
+                    id="emails_to_notify" 
                     value="<?= $current_editing_url['emails_to_notify'] ?>"
                     class="regular-text">
                 </td>
