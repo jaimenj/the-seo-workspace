@@ -98,9 +98,18 @@ class TheSeoWorkspaceBackendController
 
     private function _add_home_url()
     {
+        $user = wp_get_current_user();
+        
         $new_home_url = sanitize_text_field($_REQUEST['txt-add-home-url']);
         TheSeoWorkspaceDatabaseManager::get_instance()->add_url([
             'home_url' => $new_home_url,
+            'max_depth_allowed' => 2,
+            'max_urls_allowed' => 3,
+            'max_secs_allowed' => 30,
+            'crawl_type' => 'in-width',
+            'web_ping_enabled' => 1,
+            'is_online' => 0,
+            'emails_to_notify' => $user->user_email,
         ]);
 
         return  '<div id="message" class="notice notice-success is-dismissible"><p>New home URL saved!</p></div>';
