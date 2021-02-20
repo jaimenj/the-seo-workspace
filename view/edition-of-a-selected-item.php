@@ -86,7 +86,10 @@ if(isset($_GET['edit-id']) and !empty($_GET['edit-id']) and is_numeric($_GET['ed
                 </th>
                 <td>
                     <select name="crawl_type" id="crawl_type">
-                        <option value="normal"<?= ($current_editing_url['crawl_type'] == 'normal' ? ' selected' : '') ?>>Normal</option>
+                        <option value="in-width"<?= ($current_editing_url['crawl_type'] == 'in-width' ? ' selected' : '') ?>>In width</option>
+                        <option value="in-iterative-width"<?= ($current_editing_url['crawl_type'] == 'in-iterative-width' ? ' selected' : '') ?>>In iterative width</option>
+                        <option value="in-depth"<?= ($current_editing_url['crawl_type'] == 'in-depth' ? ' selected' : '') ?>>In depth</option>
+                        <option value="in-iterative-depth"<?= ($current_editing_url['crawl_type'] == 'in-iterative-depth' ? ' selected' : '') ?>>In iterative depth</option>
                         <option value="random"<?= ($current_editing_url['crawl_type'] == 'random' ? ' selected' : '') ?>>Random</option>
                     </select>
                 </td>
