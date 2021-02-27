@@ -1,6 +1,6 @@
 # The SEO Workspace
 
-A SEO Workspace.
+A plugin for WordPress to study the SEO of sites.
 
 ![Plugin image](https://raw.githubusercontent.com/jaimenj/the-seo-workspace/master/assets/screenshot-1.png)
 
@@ -9,7 +9,7 @@ A SEO Workspace.
 * Tags: wordpress, seo
 * Requires at least: 5.0
 * Tested up to: 5.6
-* Requires PHP: 7.2
+* Requires PHP: 7.3
 * Stable tag: 0.1
 * License: GPLv2 or later
 * Repository URL: https://github.com/jaimenj/the-seo-workspace
@@ -18,7 +18,7 @@ A SEO Workspace.
 
 ## Description
 
-A plugin to study the SEO of sites.
+A plugin to study the SEO of sites. With this plugin you can organize the sites that you are working on the SEO. You can edit the main configs for each site, for each mode of study. Launch the studies and see the progress until in finish all into your WordPress site. 
 
 Plugin website: \
 <a href="https://jnjsite.com/the-seo-workspace-for-wordpress/">https://jnjsite.com/the-seo-workspace-for-wordpress/</a>
@@ -28,6 +28,8 @@ Plugin website: \
 * Feel free to contribute in GitHub to improve the project.
 * It’s free, completely free.
 * It keeps data into your website.
+* Unlimited studies of sites.
+* Easily customizable.
 * Etc..
 
 ## Installation
@@ -54,9 +56,13 @@ All the options configured into the plugin are removed when plugin is deleted, n
 
 ## Frequently Asked Questions
 
-= ? =
+= What is the Quantity per Batch config? =
 
-Lorem ipsum..
+The study is done in batches of URLs studied. Every bacth must be done by the server in a maximum time of 30 seconds to avoid reaching this default timeout server (usually 30 seconds). So you can increase or decrease it for adjusting it acordingly to the size of your server.
+
+= What is the Time beetween Batches config? =
+
+The study is done in batches of URLs studied. When a batch is done, it will sleep to avoid blocking your server with too much processing. This amount of time of sleep is the Time beetween Batches.
 
 ## Screenshots
 
@@ -64,8 +70,16 @@ Lorem ipsum..
 
 ![Plugin image](https://raw.githubusercontent.com/jaimenj/the-seo-workspace/master/assets/screenshot-1.png)
 
+1. Section when selecting a site.
+
+![Plugin image](https://raw.githubusercontent.com/jaimenj/the-seo-workspace/master/assets/screenshot-2.png)
+
+1. Edition of site configs.
+
+![Plugin image](https://raw.githubusercontent.com/jaimenj/the-seo-workspace/master/assets/screenshot-3.png)
+
 ## Changelog
 
-### v0.1
+### v0.1 under construction
 
 * Initial version.
