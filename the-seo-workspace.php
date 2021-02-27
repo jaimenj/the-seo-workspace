@@ -59,6 +59,8 @@ class TheSeoWorkspace
         TheSeoWorkspaceDatabaseManager::get_instance()->remove_tables();
 
         unregister_setting('tsw_options_group', 'tsw_db_version');
+        unregister_setting('tsw_options_group', 'tsw_quantity_per_batch');
+        unregister_setting('tsw_options_group', 'tsw_time_between_batches');
     }
 
     public function uninstall()
