@@ -18,6 +18,8 @@ class TheSeoWorkspaceAjaxController
     private function __construct()
     {
         add_action('wp_ajax_tsw_urls', [$this, 'tsw_urls']);
+        add_action('wp_ajax_tsw_get_status', [$this, 'tsw_get_status']);
+        add_action('wp_ajax_tsw_do_batch', [$this, 'tsw_do_batch']);
     }
 
     public function tsw_urls()
@@ -113,7 +115,7 @@ class TheSeoWorkspaceAjaxController
                 .'Web ping enabled: '.($value->web_ping_enabled ? 'Yes' : 'No'),
                 $value->is_online ? 'Yes' : 'No',
                 $value->emails_to_notify,
-                ''
+                '',
             ];
         }
         header('Content-type: application/json');
@@ -125,6 +127,105 @@ class TheSeoWorkspaceAjaxController
             'sql' => $sql,
             'sqlFiltered' => $sql_filtered,
         ]);
+
+        wp_die();
+    }
+
+    public function tsw_get_status()
+    {
+        if (!current_user_can('administrator')) {
+            wp_die(__('Sorry, you are not allowed to manage options for this site.'));
+        }
+
+        global $wpdb;
+        $status = '';
+
+        // Selected URL..
+        $current_selected_url = TheSeoWorkspaceDatabaseManager::get_instance()->get_url(intval($_POST['site-id']));
+        $home_url = $current_selected_url['home_url'];
+
+        // Statuses
+        $num_urls_in_queue = $wpdb->get_var(
+            'SELECT count(*) FROM '.$wpdb->prefix."the_seo_machine_queue WHERE url LIKE '".$home_url."%';"
+        );
+        $num_urls_in_queue_visited = $wpdb->get_var(
+            'SELECT count(*) FROM '.$wpdb->prefix.'the_seo_machine_queue '
+            ."WHERE visited = true AND url LIKE '".$home_url."%';");
+        $num_urls = $wpdb->get_var(
+            'SELECT count(*) FROM '.$wpdb->prefix."the_seo_machine_url_entity WHERE url LIKE '".$home_url."%';"
+        );
+
+        // Return data..
+        echo $num_urls_in_queue.','
+            .$num_urls_in_queue_visited.','
+            .$num_urls;
+
+        wp_die();
+    }
+
+    public function tsw_do_batch()
+    {
+        if (!current_user_can('administrator')) {
+            wp_die(__('Sorry, you are not allowed to manage options for this site.'));
+        }
+
+        global $wpdb;
+        $status = '';
+        $quantity_per_batch = get_option('tsw_quantity_per_batch');
+
+        // Selected URL..
+        $current_selected_url = TheSeoWorkspaceDatabaseManager::get_instance()->get_url(intval($_POST['site-id']));
+        $home_url = $current_selected_url['home_url'];
+
+        // Statuses
+        $num_urls_in_queue = $wpdb->get_var(
+            'SELECT count(*) FROM '.$wpdb->prefix."the_seo_machine_queue WHERE url LIKE '".$home_url."%';"
+        );
+        $num_urls_in_queue_not_visited = $wpdb->get_var(
+            'SELECT count(*) FROM '.$wpdb->prefix.'the_seo_machine_queue '
+            ."WHERE visited <> true AND url LIKE '".$home_url."%';"
+        );
+        $num_urls = $wpdb->get_var(
+            'SELECT count(*) FROM '.$wpdb->prefix."the_seo_machine_url_entity WHERE url LIKE '".$home_url."%';"
+        );
+
+        // If starting study..
+        if (0 == $num_urls_in_queue) {
+            TheSeoMachineDatabase::get_instance()->save_url_in_queue(
+                '/' == substr($home_url, -1) ? $home_url : $home_url.'/',
+                0,
+                'ENTRY_POINT'
+            );
+
+            $status = 'processing';
+        } elseif ($num_urls_in_queue_not_visited > 0) {
+            $next_queue_urls = $wpdb->get_results(
+                'SELECT * FROM '.$wpdb->prefix.'the_seo_machine_queue '
+                ."WHERE visited <> true AND url LIKE '".$home_url."%'"
+                .'ORDER BY id ASC '
+                .'LIMIT '.$quantity_per_batch.';'
+            );
+
+            foreach ($next_queue_urls as $next_queue_url) {
+                TheSeoMachineCore::get_instance()->study($next_queue_url);
+
+                $wpdb->get_results(
+                    'UPDATE '.$wpdb->prefix.'the_seo_machine_queue '
+                    .'SET visited = true WHERE id = '.$next_queue_url->id
+                );
+            }
+            $status = 'processing';
+        } else {
+            $status = 'finished';
+        }
+
+        // Debug..
+        /*$status .= ' '.$home_url.', '.$num_urls_in_queue.' URLs in queue, '
+            .$num_urls_in_queue_not_visited.' not visited, '
+            .$num_urls.' URLs studied..';*/
+
+        // Return data..
+        echo $status;
 
         wp_die();
     }
