@@ -190,7 +190,7 @@ class TheSeoWorkspaceAjaxController
         );
 
         if ($num_urls >= $current_selected_url['max_urls_allowed']) {
-            $status = 'finished';
+            $status = 'finished, max urls achieved';
         } elseif (0 == $num_urls_in_queue) {
             // If starting study..
             TheSeoMachineDatabase::get_instance()->save_url_in_queue(
@@ -229,7 +229,7 @@ class TheSeoWorkspaceAjaxController
                 }
                 $status = 'processing';
             } else {
-                $status = 'finished';
+                $status = 'finished, no more urls, max depth achieved';
             }
         } else {
             $status = 'finished';
