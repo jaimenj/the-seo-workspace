@@ -199,12 +199,21 @@ class TheSeoWorkspaceAjaxController
 
             $status = 'processing';
         } elseif ($num_urls_in_queue_not_visited > 0) {
-            $next_queue_urls = $wpdb->get_results(
-                'SELECT * FROM '.$wpdb->prefix.'the_seo_machine_queue '
-                ."WHERE visited <> true AND url LIKE '".$home_url."%'"
-                .'ORDER BY id ASC '
-                .'LIMIT '.$quantity_per_batch.';'
-            );
+            $sql = 'SELECT * FROM '.$wpdb->prefix.'the_seo_machine_queue '
+                .'WHERE visited <> true ';
+            switch ($current_selected_url['crawl_type']) {
+                case 'in-width':
+                    $sql .= 'ORDER BY id ASC ';
+                    break;
+                case 'in-depth':
+                    $sql .= 'ORDER BY level DESC, id DESC ';
+                    break;
+                case 'random':
+                    $sql .= 'ORDER BY rand() ';
+                    break;
+            }
+            $sql .= 'LIMIT '.$quantity_per_batch.';';
+            $next_queue_urls = $wpdb->get_results($sql);
 
             foreach ($next_queue_urls as $next_queue_url) {
                 TheSeoMachineCore::get_instance()->study($next_queue_url);
