@@ -189,8 +189,10 @@ class TheSeoWorkspaceAjaxController
             'SELECT count(*) FROM '.$wpdb->prefix."the_seo_machine_url_entity WHERE url LIKE '".$home_url."%';"
         );
 
-        // If starting study..
-        if (0 == $num_urls_in_queue) {
+        if ($num_urls >= $current_selected_url['max_urls_allowed']) {
+            $status = 'finished';
+        } elseif (0 == $num_urls_in_queue) {
+            // If starting study..
             TheSeoMachineDatabase::get_instance()->save_url_in_queue(
                 '/' == substr($home_url, -1) ? $home_url : $home_url.'/',
                 0,
@@ -200,7 +202,8 @@ class TheSeoWorkspaceAjaxController
             $status = 'processing';
         } elseif ($num_urls_in_queue_not_visited > 0) {
             $sql = 'SELECT * FROM '.$wpdb->prefix.'the_seo_machine_queue '
-                .'WHERE visited <> true ';
+                .'WHERE visited <> true '
+                .'AND level <= '.$current_selected_url['max_depth_allowed'].' ';
             switch ($current_selected_url['crawl_type']) {
                 case 'in-width':
                     $sql .= 'ORDER BY id ASC ';
@@ -215,15 +218,19 @@ class TheSeoWorkspaceAjaxController
             $sql .= 'LIMIT '.$quantity_per_batch.';';
             $next_queue_urls = $wpdb->get_results($sql);
 
-            foreach ($next_queue_urls as $next_queue_url) {
-                TheSeoMachineCore::get_instance()->study($next_queue_url);
+            if (count($next_queue_urls) > 0) {
+                foreach ($next_queue_urls as $next_queue_url) {
+                    TheSeoMachineCore::get_instance()->study($next_queue_url);
 
-                $wpdb->get_results(
-                    'UPDATE '.$wpdb->prefix.'the_seo_machine_queue '
-                    .'SET visited = true WHERE id = '.$next_queue_url->id
-                );
+                    $wpdb->get_results(
+                        'UPDATE '.$wpdb->prefix.'the_seo_machine_queue '
+                        .'SET visited = true WHERE id = '.$next_queue_url->id
+                    );
+                }
+                $status = 'processing';
+            } else {
+                $status = 'finished';
             }
-            $status = 'processing';
         } else {
             $status = 'finished';
         }
