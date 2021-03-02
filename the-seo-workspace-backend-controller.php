@@ -76,9 +76,9 @@ class TheSeoWorkspaceBackendController
     {
         TheSeoWorkspaceDatabaseManager::get_instance()->update_url(intval($_GET['edit-id']), [
             'home_url' => sanitize_text_field($_POST['home_url']),
-            'max_depth_allowed' => $_POST['max_depth_allowed'],
-            'max_urls_allowed' => $_POST['max_urls_allowed'],
-            'max_secs_allowed' => $_POST['max_secs_allowed'],
+            'max_depth_allowed' => intval($_POST['max_depth_allowed']),
+            'max_urls_allowed' => intval($_POST['max_urls_allowed']),
+            'max_secs_allowed' => intval($_POST['max_secs_allowed']),
             'crawl_type' => sanitize_text_field($_POST['crawl_type']),
             'web_ping_enabled' => (boolval($_POST['web_ping_enabled']) ? 1 : 0),
             'is_online' => (boolval($_POST['is_online']) ? 1 : 0),
