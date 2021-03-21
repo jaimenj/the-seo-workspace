@@ -103,9 +103,9 @@ class TheSeoWorkspaceBackendController
         $new_home_url = sanitize_text_field($_REQUEST['txt-add-home-url']);
         TheSeoWorkspaceDatabaseManager::get_instance()->add_url([
             'home_url' => $new_home_url,
-            'max_depth_allowed' => 2,
-            'max_urls_allowed' => 3,
-            'max_secs_allowed' => 30,
+            'max_depth_allowed' => 20,
+            'max_urls_allowed' => 100,
+            'max_secs_allowed' => 3600,
             'crawl_type' => 'in-width',
             'web_ping_enabled' => 1,
             'is_online' => 0,
