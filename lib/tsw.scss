@@ -132,7 +132,9 @@
 }
 
 .tsw-btn-study-site,
-.tsw-btn-see-results {
+.tsw-btn-see-results,
+.tsw-btn-reset-queue-of-site,
+.tsw-btn-remove-data-of-site {
     display: inline-block;
     text-decoration: none;
     font-size: 15px;
@@ -151,8 +153,11 @@
     background-color: green;
 }
 
-.tsw-btn-see-results {
+.tsw-btn-see-results,
+.tsw-btn-reset-queue-of-site,
+.tsw-btn-remove-data-of-site {
     float: right;
+    margin-left: 5px;
 }
 
 .tsw-button-studying {
