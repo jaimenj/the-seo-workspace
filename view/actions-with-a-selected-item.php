@@ -21,8 +21,10 @@ if(isset($_GET['select-id']) and !empty($_GET['select-id']) and is_numeric($_GET
     <input type="hidden" id="tsw-current-selected-crawl_type" value="<?= $current_selected_url['crawl_type'] ?>">
     <input type="hidden" id="tsw-current-selected-web_ping_enabled" value="<?= $current_selected_url['web_ping_enabled'] ?>">
     <!-- --> 
-    <button type="button" class="tsw-btn-see-results">See results</button>
-    <button type="button" name="tsw-btn-study-site" id="tsw-btn-study-site" class="tsw-btn-study-site">Study Site</button>
+    <button type="button" id="tsw-btn-study-site" class="tsw-btn-study-site">Study Site</button>
+    <button type="button" id="tsw-btn-see-results" class="tsw-btn-see-results">See results</button>
+    <button type="button" id="tsw-btn-reset-queue-of-site" class="tsw-btn-reset-queue-of-site">Reset queue of site</button>
+    <button type="button" id="tsw-btn-remove-all-data-of-site" class="tsw-btn-remove-all-data-of-site">Remove all data of site</button>
     <span id="tsw-box-study-site-status">Standby</span>
     * If you are studying the site and close the window, the study will stop.<br>
     <div class="tsw-progress-bar-border">
