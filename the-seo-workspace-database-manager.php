@@ -126,5 +126,57 @@ class TheSeoWorkspaceDatabaseManager
 
     public function remove_url($id)
     {
+        global $wpdb;
+
+        $sql = 'DELETE FROM '.$wpdb->prefix.'the_seo_workspace WHERE id = '.$id.';';
+
+        $wpdb->get_results($sql);
+    }
+
+    public function reset_queue_of_site($id)
+    {
+        global $wpdb;
+
+        // Get site..
+        $sql = 'SELECT * FROM '.$wpdb->prefix.'the_seo_workspace WHERE id = '.$id.';';
+        $site = $wpdb->get_results($sql)[0];
+
+        // Remove queue..
+        $wpdb->get_results(
+            'DELETE FROM '.$wpdb->prefix.'the_seo_machine_queue '
+            ."WHERE url LIKE '%".$site->home_url."%';"
+        );
+    }
+
+    public function remove_data_of_site($id)
+    {
+        global $wpdb;
+
+        // Get site..
+        $sql = 'SELECT * FROM '.$wpdb->prefix.'the_seo_workspace WHERE id = '.$id.';';
+        $site = $wpdb->get_results($sql)[0];
+
+        // Find URLs..
+        $sql = "SELECT * FROM ".$wpdb->prefix."the_seo_machine_url_entity WHERE url LIKE '%".$site->home_url."%';";
+        $urls = $wpdb->get_results($sql);
+        foreach ($urls as $url) {
+            // Remove URL data..
+            $wpdb->get_results(
+                'DELETE FROM '.$wpdb->prefix.'the_seo_machine_url_string '
+                .'WHERE id_url = '.$url->id.';'
+            );
+            $wpdb->get_results(
+                'DELETE FROM '.$wpdb->prefix.'the_seo_machine_url_text '
+                .'WHERE id_url = '.$url->id.';'
+            );
+            $wpdb->get_results(
+                'DELETE FROM '.$wpdb->prefix.'the_seo_machine_url_number '
+                .'WHERE id_url = '.$url->id.';'
+            );
+            $wpdb->get_results(
+                'DELETE FROM '.$wpdb->prefix.'the_seo_machine_url_entity '
+                .'WHERE id = '.$url->id.';'
+            );
+        }
     }
 }

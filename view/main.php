@@ -5,8 +5,6 @@ if (!current_user_can('administrator')) {
     wp_die(__('Sorry, you are not allowed to manage options for this site.'));
 }
 
-$current_columns_to_show_array = explode(',', $current_columns_to_show);
-
 ?>
 
 <style>hr{margin-top: 30px;}</style>
@@ -76,7 +74,13 @@ data-tsw_ajax_url="<?= admin_url('admin-ajax.php') ?>">
             include TSW_PATH.'view/actions-with-a-selected-item.php';
         }
         if (isset($_GET['edit-id'])) {
-            include TSW_PATH.'view/edition-of-a-selected-item.php';
+            if(isset($_GET['edit-id']) and !empty($_GET['edit-id']) and is_numeric($_GET['edit-id'])) {
+                $current_editing_url = TheSeoWorkspaceDatabaseManager::get_instance()->get_url(intval($_GET['edit-id']));
+            }
+
+            if (!empty($current_editing_url)) {
+                include TSW_PATH.'view/edition-of-a-selected-item.php';
+            }
         }
 
         ?>

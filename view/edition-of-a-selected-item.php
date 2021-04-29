@@ -5,10 +5,6 @@ if (!current_user_can('administrator')) {
     wp_die(__('Sorry, you are not allowed to manage options for this site.'));
 }
 
-if(isset($_GET['edit-id']) and !empty($_GET['edit-id']) and is_numeric($_GET['edit-id'])) {
-    $current_editing_url = TheSeoWorkspaceDatabaseManager::get_instance()->get_url(intval($_GET['edit-id']));
-}
-
 ?>
 <div class="tsw-edition-zone">
     <h3>Editing <span class="site-home-url"></span></h3>
@@ -129,8 +125,16 @@ if(isset($_GET['edit-id']) and !empty($_GET['edit-id']) and is_numeric($_GET['ed
             </tr>
         </tbody>
     </table>
-    <button type="submit" name="tsw-submit-save-edition-zone" id="tsw-submit-save-edition-zone" class="button button-green button-save-edition-zone">Save the current site changes</button>
+    <button 
+    type="submit" 
+    name="tsw-submit-save-edition-zone" 
+    id="tsw-submit-save-edition-zone" 
+    class="button button-green button-save-edition-zone">Save the current site changes</button>
     <a href="?page=the-seo-workspace&select-id=<?= $current_editing_url['id'] ?>" class="button button-green tsw-btn-select-item">Select</a>
     <a href="?page=the-seo-workspace" class="button button-green tsw-btn-close-item">Close</a>
-    <a href="?page=the-seo-workspace&remove-id=<?= $current_editing_url['id'] ?>" class="button button-red tsw-btn-remove-item">Remove</a>
+    <button 
+    type="submit" 
+    name="tsw-submit-remove-item" 
+    id="tsw-submit-remove-item" 
+    class="button button-red tsw-submit-remove-item">Remove</button>
 </div>

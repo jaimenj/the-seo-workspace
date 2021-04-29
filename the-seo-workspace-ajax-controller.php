@@ -20,6 +20,8 @@ class TheSeoWorkspaceAjaxController
         add_action('wp_ajax_tsw_urls', [$this, 'tsw_urls']);
         add_action('wp_ajax_tsw_get_status', [$this, 'tsw_get_status']);
         add_action('wp_ajax_tsw_do_batch', [$this, 'tsw_do_batch']);
+        add_action('wp_ajax_tsw_reset_queue_of_site', [$this, 'tsw_reset_queue_of_site']);
+        add_action('wp_ajax_tsw_remove_data_of_site', [$this, 'tsw_remove_data_of_site']);
     }
 
     public function tsw_urls()
@@ -170,6 +172,26 @@ class TheSeoWorkspaceAjaxController
         }
 
         echo TheSeoWorkspace::get_instance()->do_batch(intval($_POST['site-id']));
+
+        wp_die();
+    }
+
+    public function tsw_reset_queue_of_site() {
+        if (!current_user_can('administrator')) {
+            wp_die(__('Sorry, you are not allowed to manage options for this site.'));
+        }
+
+        TheSeoWorkspaceDatabaseManager::get_instance()->reset_queue_of_site(intval($_POST['site-id']));
+
+        wp_die();
+    }
+
+    public function tsw_remove_data_of_site() {
+        if (!current_user_can('administrator')) {
+            wp_die(__('Sorry, you are not allowed to manage options for this site.'));
+        }
+
+        TheSeoWorkspaceDatabaseManager::get_instance()->remove_data_of_site(intval($_POST['site-id']));
 
         wp_die();
     }

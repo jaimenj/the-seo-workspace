@@ -48,7 +48,7 @@ class TheSeoWorkspaceBackendController
             } elseif (!wp_verify_nonce($_REQUEST['tsw_nonce'], 'tsw')) {
                 $tswSms = '<div id="message" class="notice notice-error is-dismissible"><p>ERROR: invalid nonce specified.</p></div>';
             } else {
-                /*
+                /**
                  * Handling actions..
                  */
                 if (isset($_REQUEST['tsw-submit'])) {
@@ -57,6 +57,8 @@ class TheSeoWorkspaceBackendController
                     $tswSms = $this->_add_home_url();
                 } elseif (isset($_REQUEST['tsw-submit-save-edition-zone'])) {
                     $tswSms = $this->_save_edition_zone();
+                } elseif(isset($_REQUEST['tsw-submit-remove-item'])){
+                    $tswSms = $this->_remove_item();
                 } else {
                     $tswSms = '<div id="message" class="notice notice-success is-dismissible"><p>Cannot understand submitting!</p></div>';
                 }
@@ -113,5 +115,11 @@ class TheSeoWorkspaceBackendController
         ]);
 
         return  '<div id="message" class="notice notice-success is-dismissible"><p>New home URL saved!</p></div>';
+    }
+
+    private function _remove_item(){
+        TheSeoWorkspaceDatabaseManager::get_instance()->remove_url($_REQUEST['edit-id']);
+
+        return  '<div id="message" class="notice notice-success is-dismissible"><p>URL removed!</p></div>';
     }
 }
