@@ -181,7 +181,7 @@ class TheSeoWorkspaceAjaxController
             wp_die(__('Sorry, you are not allowed to manage options for this site.'));
         }
 
-        TheSeoWorkspaceDatabaseManager::get_instance()->reset_queue_of_site(intval($_POST['site-id']));
+        echo TheSeoWorkspaceDatabaseManager::get_instance()->reset_queue_of_site(intval($_POST['site-id']));
 
         wp_die();
     }
@@ -191,7 +191,7 @@ class TheSeoWorkspaceAjaxController
             wp_die(__('Sorry, you are not allowed to manage options for this site.'));
         }
 
-        TheSeoWorkspaceDatabaseManager::get_instance()->remove_data_of_site(intval($_POST['site-id']));
+        echo TheSeoWorkspaceDatabaseManager::get_instance()->remove_data_of_site(intval($_POST['site-id']));
 
         wp_die();
     }

@@ -1,6 +1,6 @@
 <?php
 
-defined('ABSPATH') or die('No no no');
+defined('ABSPATH') or exit('No no no');
 
 class TheSeoWorkspaceDatabaseManager
 {
@@ -146,6 +146,8 @@ class TheSeoWorkspaceDatabaseManager
             'DELETE FROM '.$wpdb->prefix.'the_seo_machine_queue '
             ."WHERE url LIKE '%".$site->home_url."%';"
         );
+
+        return 'ok';
     }
 
     public function remove_data_of_site($id)
@@ -157,7 +159,7 @@ class TheSeoWorkspaceDatabaseManager
         $site = $wpdb->get_results($sql)[0];
 
         // Find URLs..
-        $sql = "SELECT * FROM ".$wpdb->prefix."the_seo_machine_url_entity WHERE url LIKE '%".$site->home_url."%';";
+        $sql = 'SELECT * FROM '.$wpdb->prefix."the_seo_machine_url_entity WHERE url LIKE '%".$site->home_url."%';";
         $urls = $wpdb->get_results($sql);
         foreach ($urls as $url) {
             // Remove URL data..
@@ -178,5 +180,12 @@ class TheSeoWorkspaceDatabaseManager
                 .'WHERE id = '.$url->id.';'
             );
         }
+
+        // Remove queue..
+        $sql_delete = 'DELETE FROM '.$wpdb->prefix.'the_seo_machine_queue '
+            ."WHERE url LIKE '%".$site->home_url."%';";
+        $wpdb->get_results($sql_delete);
+
+        return 'ok';
     }
 }
