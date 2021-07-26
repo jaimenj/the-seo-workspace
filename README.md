@@ -8,10 +8,10 @@ A plugin for WordPress to study the SEO of sites.
 
 * Tags: wordpress, seo
 * Requires at least: 5.0
-* Tested up to: 5.6
-* Requires PHP: 7.3
+* Tested up to: 5.8
+* Requires PHP: 7.4
 * Stable tag: 0.1
-* License: GPLv2 or later
+* License: MIT
 * Repository URL: https://github.com/jaimenj/the-seo-workspace
 * Plugin URI: https://jnjsite.com/the-seo-workspace-for-wordpress/
 * Contributors: jaimenj
