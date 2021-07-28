@@ -91,7 +91,14 @@ class TheSeoWorkspaceAjaxController
             $sql .= ' ORDER BY '.implode(', ', $order_by_clauses);
         }
         //var_dump($sql);
-        $sql .= ' LIMIT '.intval($_POST['length']).' OFFSET '.intval($_POST['start']);
+
+        // Length..
+        $length = intval($_POST['length']);
+        $start = intval($_POST['start']);
+        if ($length > 0) {
+            $sql .= ' LIMIT '.$length.' OFFSET '.$start;
+        }
+
         $results = $wpdb->get_results($sql);
 
         // Totals..
