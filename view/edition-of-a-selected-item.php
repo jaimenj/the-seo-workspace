@@ -7,7 +7,7 @@ if (!current_user_can('administrator')) {
 
 ?>
 <div class="tsw-edition-zone">
-    <h3>Editing <span class="site-home-url"></span></h3>
+    <h3>Editing <span class="site-home-url"><?= $current_editing_url['home_url'] ?></span></h3>
     <table class="form-table" role="presentation">
         <tbody>
             <tr>
@@ -88,53 +88,20 @@ if (!current_user_can('administrator')) {
                     </select>
                 </td>
             </tr>
-            <tr>
-                <th scope="row">
-                    <label for="web_ping_enabled">Web ping enabled</label>
-                </th>
-                <td>
-                    <select name="web_ping_enabled" id="web_ping_enabled">
-                        <option value="1"<?= ($current_editing_url['web_ping_enabled'] ? ' selected' : '') ?>>Yes</option>
-                        <option value="0"<?= (!$current_editing_url['web_ping_enabled'] ? ' selected' : '') ?>>No</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">
-                    <label for="is_online">Is online</label>
-                </th>
-                <td>
-                    <select name="is_online" id="is_online">
-                        <option value="1"<?= ($current_editing_url['is_online'] ? ' selected' : ''); ?>>Yes</option>
-                        <option value="0"<?= (!$current_editing_url['is_online'] ? ' selected' : ''); ?>>No</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">
-                    <label for="emails_to_notify">Emails to notify</label>
-                </th>
-                <td>
-                    <input 
-                    name="emails_to_notify" 
-                    type="text" 
-                    id="emails_to_notify" 
-                    value="<?= $current_editing_url['emails_to_notify'] ?>"
-                    class="regular-text">
-                </td>
-            </tr>
         </tbody>
     </table>
-    <button 
-    type="submit" 
-    name="tsw-submit-save-edition-zone" 
-    id="tsw-submit-save-edition-zone" 
-    class="button button-green button-save-edition-zone">Save the current site changes</button>
-    <a href="?page=the-seo-workspace&select-id=<?= $current_editing_url['id'] ?>" class="button button-green tsw-btn-select-item">Select</a>
-    <a href="?page=the-seo-workspace" class="button button-green tsw-btn-close-item">Close</a>
-    <button 
-    type="submit" 
-    name="tsw-submit-remove-item" 
-    id="tsw-submit-remove-item" 
-    class="button button-red tsw-submit-remove-item">Remove</button>
+
+    <div class="tsw-action-buttons">
+        <a href="?page=the-seo-workspace&select-id=<?= $current_editing_url['id'] ?>" class="button button-green tsw-btn-select-item">Select</a>
+        <button 
+        type="submit" 
+        name="tsw-submit-save-edition-zone" 
+        id="tsw-submit-save-edition-zone" 
+        class="button button-green button-save-edition-zone">Save the current site changes</button>
+        <button 
+        type="submit" 
+        name="tsw-submit-remove-item" 
+        id="tsw-submit-remove-item" 
+        class="button button-red tsw-submit-remove-item">Remove</button>
+    </div>
 </div>
