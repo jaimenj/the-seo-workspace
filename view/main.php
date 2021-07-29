@@ -96,8 +96,6 @@ data-tsw_ajax_url="<?= admin_url('admin-ajax.php') ?>">
                         <th>Id</th>
                         <th>Home URL</th>
                         <th>Main info</th>
-                        <th>Is online</th>
-                        <th>Emails to notify</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -106,8 +104,6 @@ data-tsw_ajax_url="<?= admin_url('admin-ajax.php') ?>">
                         <th class="filterme">Filter..</th>
                         <th class="filterme">Filter..</th>
                         <th></th>
-                        <th class="filterme">Filter..</th>
-                        <th class="filterme">Filter..</th>
                         <th></th>
                     </tr>
                 </tfoot>

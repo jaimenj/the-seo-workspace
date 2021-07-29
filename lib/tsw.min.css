@@ -15,10 +15,12 @@
 .tsw-edition-zone td{padding:2px}
 .tsw-edition-zone td input{width:100%}
 .tsw-actions-zone{padding:5px;margin:5px 0;box-shadow:0 0 4px;border-radius:3px}
+.tsw-actions-zone .tsw-study-buttons{margin:50px}
 .tsw-wrap h1,.tsw-wrap h2,.tsw-wrap h3,.tsw-wrap h4,.tsw-wrap h5,.tsw-wrap h6{text-align:center}
 .tsw-wrap h1{text-align:left}
 .tsw-wrap h1 a{text-decoration:none;color:#23282d}
-.tsw-submit-remove-item{float:right}
+.tsw-actions-zone h3,.tsw-edition-zone h3{font-size:22px;text-align:left;margin-left:20px}
+.tsw-actions-zone .tsw-action-buttons,.tsw-edition-zone .tsw-action-buttons{margin-top:30px}
 .button-red{background-color:red!important;border-color:red!important;color:#fff!important}
 .tsw-btn-remove-data-of-site,.tsw-btn-reset-queue-of-site,.tsw-btn-see-results,.tsw-btn-study-site{display:inline-block;text-decoration:none;font-size:15px;font-weight:700;line-height:2.15384615;min-height:30px;margin:0;padding:0 10px;cursor:pointer;border-radius:3px;white-space:nowrap;box-sizing:border-box;border:none;color:#fff;background-color:green}
 .tsw-btn-remove-data-of-site,.tsw-btn-reset-queue-of-site,.tsw-btn-see-results{float:right;margin-left:5px}
